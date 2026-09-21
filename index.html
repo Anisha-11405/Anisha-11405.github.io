@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Anisha Ganesan – Java and Full-Stack Developer</title>
+<meta name="description" content="Portfolio of Anisha Ganesan, a Computer Science and Engineering undergraduate specialising in Java, Spring Boot, React and MySQL.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F6F7F9;
+    --surface: #FFFFFF;
+    --ink: #111827;
+    --muted: #4B5563;
+    --line: #E1E5EB;
+    --accent: #0B5FA5;
+    --accent-soft: #E7F0F8;
+    --font-sans: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0F1419;
+      --surface: #171D25;
+      --ink: #EAEEF3;
+      --muted: #9AA6B5;
+      --line: #27303B;
+      --accent: #6CB0EE;
+      --accent-soft: #162434;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #0F1419;
+    --surface: #171D25;
+    --ink: #EAEEF3;
+    --muted: #9AA6B5;
+    --line: #27303B;
+    --accent: #6CB0EE;
+    --accent-soft: #162434;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 1.5rem); }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, p, dl, dd, ul, ol, table { margin: 0; padding: 0; }
+  ul, ol { list-style: none; }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+  /* Layout */
+  .layout { max-width: 1120px; margin: 0 auto; padding: 2rem 1.25rem 3rem; display: grid; gap: 2.5rem; }
+  .side h1 { font-size: 2rem; line-height: 1.15; font-weight: 600; letter-spacing: -.02em; }
+  .side .role { margin-top: .6rem; font-weight: 500; }
+  .side .tagline { margin-top: .4rem; color: var(--muted); font-size: .95rem; }
+  .contact { margin-top: 1.5rem; display: grid; gap: .75rem; }
+  .contact dt { color: var(--muted); font-size: .8rem; }
+  .contact dd { overflow-wrap: anywhere; font-size: .95rem; }
+  .contact a { color: var(--ink); }
+  .contact a:hover { color: var(--accent); }
+  .side nav { margin-top: 1.75rem; }
+  .side nav ul { display: flex; flex-wrap: wrap; gap: .25rem 1rem; }
+  .side nav a { display: block; color: var(--muted); text-decoration: none; padding: .25rem 0; font-size: .95rem; }
+  .side nav a:hover { color: var(--ink); }
+  .side nav a[aria-current="true"] { color: var(--accent); font-weight: 500; }
+
+  @media (min-width: 960px) {
+    .layout { grid-template-columns: 270px minmax(0, 1fr); gap: 4.5rem; padding: 4rem 2rem 4rem; }
+    .side { position: sticky; top: 3rem; align-self: start; }
+    .side nav ul { display: grid; gap: 0; }
+    .side nav a { border-left: 2px solid var(--line); padding: .3rem 0 .3rem .9rem; }
+    .side nav a[aria-current="true"] { border-left-color: var(--accent); }
+  }
+
+  /* Main content */
+  main > section { padding: 2.5rem 0; border-top: 1px solid var(--line); }
+  main > section:first-child { padding-top: 0; border-top: 0; }
+  h2 { font-size: 1.35rem; font-weight: 600; letter-spacing: -.01em; line-height: 1.25; margin-bottom: 1.25rem; }
+  h3 { font-size: 1.15rem; font-weight: 600; line-height: 1.35; }
+  h4 { font-size: .95rem; font-weight: 600; margin: 1.6rem 0 .6rem; }
+  .lead { max-width: 40rem; }
+  .lead + .lead { margin-top: .9rem; }
+  .muted { color: var(--muted); }
+
+  .facts { margin-top: 1.75rem; display: grid; gap: 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+  .facts div { padding: .8rem 1rem; border-bottom: 1px solid var(--line); }
+  .facts div:last-child { border-bottom: 0; }
+  .facts dt { color: var(--muted); font-size: .85rem; }
+  .facts dd { font-weight: 500; }
+  @media (min-width: 640px) {
+    .facts { grid-template-columns: 1fr 1fr; }
+    .facts div { border-bottom: 1px solid var(--line); }
+    .facts div:nth-child(odd) { border-right: 1px solid var(--line); }
+    .facts div:nth-last-child(-n+2) { border-bottom: 0; }
+  }
+
+  .chips { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .9rem; }
+  .chips li { font: 400 .75rem var(--font-mono); background: var(--accent-soft); color: var(--ink); border-radius: 4px; padding: .2rem .55rem; }
+
+  .btn { display: inline-block; padding: .55rem 1rem; border-radius: 6px; border: 1px solid var(--accent); background: var(--accent); color: var(--paper); text-decoration: none; font-weight: 500; font-size: .95rem; }
+  .btn:hover { filter: brightness(1.1); }
+  .btn.quiet { background: transparent; color: var(--accent); }
+  .btn.quiet:hover { background: var(--accent-soft); filter: none; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.1rem; }
+
+  .points { display: grid; gap: .5rem; margin-top: .9rem; max-width: 42rem; }
+  .points li { position: relative; padding-left: 1.1rem; }
+  .points li::before { content: ""; position: absolute; left: 0; top: .78em; width: .45rem; height: 2px; background: var(--accent); }
+
+  /* Featured project */
+  .feature { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1.5rem 1.25rem; }
+  .feature .sub { color: var(--muted); font-size: .95rem; margin-top: .2rem; }
+  .feature .summary { margin-top: 1rem; max-width: 42rem; }
+  .steps { display: grid; gap: .6rem; margin-top: .4rem; counter-reset: step; max-width: 42rem; }
+  .steps li { counter-increment: step; position: relative; padding-left: 2rem; }
+  .steps li::before { content: counter(step); position: absolute; left: 0; top: .15rem; width: 1.35rem; height: 1.35rem; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font: 500 .75rem/1.35rem var(--font-mono); text-align: center; }
+  .steps strong { font-weight: 500; }
+
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; }
+  table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+  th, td { text-align: left; padding: .55rem .8rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 600; background: var(--accent-soft); white-space: nowrap; }
+  tr:last-child td { border-bottom: 0; }
+  td.mono, th.mono { font-family: var(--font-mono); font-size: .8rem; white-space: nowrap; }
+
+  details { margin-top: 1.4rem; border: 1px solid var(--line); border-radius: 8px; }
+  summary { cursor: pointer; padding: .7rem 1rem; font-weight: 500; }
+  details[open] summary { border-bottom: 1px solid var(--line); }
+  details .table-wrap { border: 0; border-radius: 0 0 8px 8px; }
+
+  .note { margin-top: 1.5rem; padding: .8rem 1rem; border-left: 3px solid var(--accent); background: var(--accent-soft); font-size: .92rem; max-width: 42rem; }
+
+  /* Entries */
+  .entry + .entry { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+  .entry .when { color: var(--muted); font-size: .9rem; }
+  .entry .org { color: var(--muted); }
+
+  .rows > div { display: grid; gap: .15rem; padding: .85rem 0; border-bottom: 1px solid var(--line); }
+  .rows > div:first-child { padding-top: 0; }
+  .rows dt { font-weight: 600; }
+  .rows dd { color: var(--muted); }
+  @media (min-width: 640px) { .rows > div { grid-template-columns: 11rem 1fr; gap: 1.25rem; } }
+
+  .creds li { padding: .8rem 0; border-bottom: 1px solid var(--line); }
+  .creds li:first-child { padding-top: 0; }
+  .creds .name { font-weight: 500; }
+  .creds .detail { display: block; color: var(--muted); font-size: .9rem; overflow-wrap: anywhere; }
+  .creds .detail.mono { font-family: var(--font-mono); font-size: .75rem; }
+
+  .site-footer { max-width: 1120px; margin: 0 auto; padding: 1.5rem 1.25rem 2.5rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+  @media (min-width: 960px) { .site-footer { padding-left: 2rem; padding-right: 2rem; } }
+  @media (min-width: 720px) { .feature { padding: 2rem; } }
+
+  @media print {
+    body { background: #fff; color: #000; }
+    .side nav, .btn-row { display: none; }
+    .side { position: static; }
+    main > section { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+  <aside class="side">
+    <h1>Anisha Ganesan</h1>
+    <p class="role">Java and full-stack developer</p>
+    <p class="tagline">B.E. Computer Science and Engineering, class of 2027</p>
+
+    <dl class="contact">
+      <div><dt>Email</dt><dd><a href="mailto:anishaganesan1104@gmail.com">anishaganesan1104@gmail.com</a></dd></div>
+      <div><dt>Phone</dt><dd><a href="tel:+918903509969">+91 89035 09969</a></dd></div>
+      <div><dt>GitHub</dt><dd><a href="https://github.com/Anisha-11405" target="_blank" rel="noopener">github.com/Anisha-11405</a></dd></div>
+      <div><dt>LeetCode</dt><dd><a href="https://leetcode.com/u/AnishaG/" target="_blank" rel="noopener">leetcode.com/u/AnishaG</a></dd></div>
+      <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/anisha-g-433177320" target="_blank" rel="noopener">linkedin.com/in/anisha-g-433177320</a></dd></div>
+    </dl>
+
+    <nav aria-label="Sections">
+      <ul id="nav">
+        <li><a href="#about">About</a></li>
+        <li><a href="#smartlabel">Featured project</a></li>
+        <li><a href="#projects">Other projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#credentials">Certifications</a></li>
+        <li><a href="#education">Education</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main>
+    <section id="about">
+      <h2>About</h2>
+      <p class="lead">I'm a Computer Science and Engineering undergraduate focused on back-end development with Java and Spring Boot. I design REST APIs, secure them with JWT and Spring Security, model data with JPA and MySQL, and connect them to React front ends.</p>
+      <p class="lead">I have built three full-stack projects, completed a banking simulation internship with Infosys Springboard, earned AWS and ServiceNow certifications, and solved more than 500 data structures and algorithms problems on LeetCode.</p>
+      <dl class="facts">
+        <div><dt>Degree</dt><dd>B.E. Computer Science and Engineering, 2023 – 2027</dd></div>
+        <div><dt>CGPA</dt><dd>8.73</dd></div>
+        <div><dt>Core stack</dt><dd>Java 17, Spring Boot, React.js, MySQL</dd></div>
+        <div><dt>Problem solving</dt><dd>500+ LeetCode problems</dd></div>
+      </dl>
+    </section>
+
+    <section id="smartlabel">
+      <h2>Featured project</h2>
+      <article class="feature">
+        <p class="sub">Aug 2026 – Sep 2026</p>
+        <h3>SmartLabel AI</h3>
+        <p class="sub">Full-stack label compliance screening application</p>
+        <p class="summary">SmartLabel AI checks the mandatory declarations on packaged-product labels. A user uploads a photo of a label, the application reads the text with OCR, extracts the declarations, and evaluates them against a set of preliminary compliance rules. Each result comes with the evidence found and a recommended action, so a reviewer can see why a label was scored the way it was.</p>
+
+        <ul class="chips" aria-label="Technologies">
+          <li>Java 17</li><li>Spring Boot 3.4</li><li>Spring Data JPA</li><li>Hibernate</li><li>MySQL 8</li><li>React 18</li><li>Tesseract OCR</li><li>Maven</li><li>REST API</li>
+        </ul>
+        <div class="btn-row">
+          <a class="btn" href="https://github.com/Anisha-11405/SmartLabelAI" target="_blank" rel="noopener">View source on GitHub</a>
+        </div>
+
+        <h4>What it does</h4>
+        <ul class="points">
+          <li>Accepts a label image (up to 10 MB) with a live preview, and reads it with Tesseract OCR on the server. If OCR is not available, the user can paste the label text instead.</li>
+          <li>Extracts 15 declarations from the text with pattern matching: product and common name, manufacturer, packer, importer, country of origin, net quantity, MRP, batch or lot number, manufacturing and packing dates, best before, consumer care details, unit sale price and product dimensions.</li>
+          <li>Runs 11 explainable checks. Each check records its requirement, legal reference, the evidence found and the action to take, and returns Pass or Review.</li>
+          <li>Calculates a compliance score from the share of checks passed and assigns an overall status. Anything software cannot judge, such as legibility and prominence, is routed to manual verification rather than passed automatically.</li>
+          <li>Saves every inspection to MySQL with a readable ID such as SL-000123, so results can be reopened later.</li>
+          <li>Provides a dashboard with inspection totals by status and the average score, plus a history view with search, filter and delete.</li>
+          <li>Exports each inspection as a printable report or as JSON, includes a demo mode for trying it without a label, and has a responsive layout for mobile screens.</li>
+        </ul>
+
+        <h4>How an inspection runs</h4>
+        <ol class="steps">
+          <li><strong>Upload.</strong> The React client sends the label image, product category and package type to the API as multipart form data.</li>
+          <li><strong>OCR.</strong> The service passes the image to Tesseract and collects the recognised text.</li>
+          <li><strong>Extraction.</strong> Regular expressions pull each declaration out of the text.</li>
+          <li><strong>Rule evaluation.</strong> The 11 checks run against the extracted values and produce a score and status.</li>
+          <li><strong>Persistence.</strong> The inspection is stored through Spring Data JPA and the full report is returned to the client.</li>
+        </ol>
+
+        <h4>REST API</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Method</th><th>Endpoint</th><th>Purpose</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">POST</td><td class="mono">/api/analyze-image</td><td>Analyse a label image, with OCR or supplied text</td></tr>
+              <tr><td class="mono">POST</td><td class="mono">/api/analyze</td><td>Analyse label text directly</td></tr>
+              <tr><td class="mono">GET</td><td class="mono">/api/history</td><td>List past inspections, newest first</td></tr>
+              <tr><td class="mono">GET</td><td class="mono">/api/inspections/{id}</td><td>Full report for one inspection</td></tr>
+              <tr><td class="mono">DELETE</td><td class="mono">/api/inspections/{id}</td><td>Delete an inspection</td></tr>
+              <tr><td class="mono">GET</td><td class="mono">/api/dashboard/stats</td><td>Totals by status and average score</td></tr>
+              <tr><td class="mono">GET</td><td class="mono">/api/health</td><td>Service health check</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <details>
+          <summary>The 11 checks performed</summary>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Code</th><th>Requirement</th><th>Reference</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">R-01</td><td>Product or common name declaration</td><td>Rule 6</td></tr>
+                <tr><td class="mono">R-02</td><td>Manufacturer, packer or importer details</td><td>Rule 6</td></tr>
+                <tr><td class="mono">R-03</td><td>Country of origin for imported products</td><td>Applicable requirements</td></tr>
+                <tr><td class="mono">R-04</td><td>Net quantity declaration</td><td>Rule 6</td></tr>
+                <tr><td class="mono">R-05</td><td>MRP declaration</td><td>Rule 6</td></tr>
+                <tr><td class="mono">R-06</td><td>Date declaration</td><td>Applicable requirements</td></tr>
+                <tr><td class="mono">R-07</td><td>Best before or use by, where applicable</td><td>Category-specific</td></tr>
+                <tr><td class="mono">R-08</td><td>Consumer care details</td><td>Rule 6</td></tr>
+                <tr><td class="mono">R-09</td><td>Unit sale price, where applicable</td><td>Applicable requirements</td></tr>
+                <tr><td class="mono">R-10</td><td>Legibility and prominence review</td><td>Manual verification</td></tr>
+                <tr><td class="mono">R-11</td><td>Batch or lot information</td><td>Applicable requirements</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+
+        <p class="note">SmartLabel AI is a prototype for preliminary screening. OCR can miss or misread text, and final compliance decisions on legibility, placement, exemptions and amendments must be made by an authorised officer.</p>
+      </article>
+    </section>
+
+    <section id="projects">
+      <h2>Other projects</h2>
+
+      <article class="entry">
+        <p class="when">Jun 2025 – Aug 2025</p>
+        <h3>Healthcare Appointment Management System</h3>
+        <p class="muted">Full-stack web application</p>
+        <ul class="points">
+          <li>Implemented create, read, update and delete operations for patients, doctors and appointments through a REST API built with Spring Boot.</li>
+          <li>Secured the API with JWT authentication.</li>
+          <li>Built the React interface with form validation, error handling and Axios integration with the API.</li>
+          <li>Stored application data in MySQL for persistence.</li>
+        </ul>
+        <ul class="chips" aria-label="Technologies">
+          <li>React.js</li><li>Spring Boot</li><li>REST API</li><li>MySQL</li><li>JWT</li><li>Axios</li>
+        </ul>
+        <div class="btn-row"><a class="btn quiet" href="https://github.com/Anisha-11405/HealthCare-Appointment-Management-System" target="_blank" rel="noopener">View source on GitHub</a></div>
+      </article>
+
+      <article class="entry">
+        <p class="when">Jan 2025 – Mar 2025</p>
+        <h3>E-Learning Portal for Students and Trainers</h3>
+        <p class="muted">Full-stack web application</p>
+        <ul class="points">
+          <li>Modelled the domain with One-to-Many and One-to-One JPA mappings.</li>
+          <li>Developed REST APIs for quizzes, discussions and evaluation.</li>
+          <li>Documented every endpoint in Postman.</li>
+          <li>Built responsive interface pages with HTML, CSS and JavaScript.</li>
+        </ul>
+        <ul class="chips" aria-label="Technologies">
+          <li>Java</li><li>Spring Boot</li><li>JPA</li><li>MySQL</li><li>HTML/CSS</li><li>JavaScript</li><li>Postman</li>
+        </ul>
+        <div class="btn-row"><a class="btn quiet" href="https://github.com/Anisha-11405/E-learning-Project" target="_blank" rel="noopener">View source on GitHub</a></div>
+      </article>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <article class="entry">
+        <p class="when">Oct 2025 – Dec 2025</p>
+        <h3>Virtual Internship, Banking Activity Simulation Platform</h3>
+        <p class="org">Infosys Springboard</p>
+        <ul class="points">
+          <li>Completed a simulation-based internship covering banking workflows and transaction processing.</li>
+          <li>Finished assignments that modelled real-world banking operations and system activity.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <dl class="rows">
+        <div><dt>Languages</dt><dd>Java 17, C++, SQL, JavaScript</dd></div>
+        <div><dt>Backend</dt><dd>Spring Boot, Spring Security, Spring Data JPA, Hibernate, REST API design, JWT authentication</dd></div>
+        <div><dt>Frontend</dt><dd>React.js, Axios, HTML, CSS, JavaScript</dd></div>
+        <div><dt>Database</dt><dd>MySQL</dd></div>
+        <div><dt>API and testing</dt><dd>Postman, Swagger/OpenAPI, JUnit</dd></div>
+        <div><dt>Tools and cloud</dt><dd>Git, GitHub, Maven, Docker, AWS</dd></div>
+        <div><dt>Fundamentals</dt><dd>Data structures and algorithms</dd></div>
+        <div><dt>Integrations</dt><dd>OCR with Tesseract</dd></div>
+        <div><dt>Professional</dt><dd>Problem-solving, communication, quick learning, team collaboration</dd></div>
+      </dl>
+    </section>
+
+    <section id="credentials">
+      <h2>Certifications and achievements</h2>
+      <ul class="creds">
+        <li>
+          <span class="name">AWS Certified Cloud Practitioner</span>
+          <span class="detail mono">Credential ID 5d6c1801c17844df978edff2c8d693ec</span>
+          <span class="detail"><a href="https://cp.certmetrics.com/amazon/en/public/verify/credential" target="_blank" rel="noopener">Verify credential</a></span>
+        </li>
+        <li><span class="name">ServiceNow Certified System Administrator (CSA)</span></li>
+        <li><span class="name">ServiceNow Certified Application Developer (CAD)</span></li>
+        <li>
+          <span class="name">500+ problems solved on LeetCode</span>
+          <span class="detail">Data structures and algorithms practice. <a href="https://leetcode.com/u/AnishaG/" target="_blank" rel="noopener">View LeetCode profile</a></span>
+        </li>
+        <li><span class="name">Selected for the State Hub round of SAP Hackfest</span></li>
+      </ul>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+      <article class="entry">
+        <p class="when">2023 – 2027</p>
+        <h3>B.E. in Computer Science and Engineering</h3>
+        <p class="org">Sri Krishna College of Engineering and Technology, Coimbatore</p>
+        <p>CGPA 8.73</p>
+      </article>
+      <article class="entry">
+        <p class="when">2021 – 2022</p>
+        <h3>Class XII</h3>
+        <p class="org">Kamaraj Matriculation Higher Secondary School</p>
+        <p>95.67%</p>
+      </article>
+      <p class="muted" style="margin-top:1.75rem">Languages: English, Tamil</p>
+    </section>
+  </main>
+</div>
+
+<footer class="site-footer">© 2026 Anisha Ganesan</footer>
+
+<script>
+(function () {
+  var links = document.querySelectorAll("#nav a");
+  var map = {};
+  links.forEach(function (a) { map[a.getAttribute("href").slice(1)] = a; });
+  var sections = Array.prototype.slice.call(document.querySelectorAll("main > section"));
+  if (!("IntersectionObserver" in window)) return;
+  var current = null;
+  function setActive(id) {
+    if (current === id) return;
+    current = id;
+    links.forEach(function (a) { a.removeAttribute("aria-current"); });
+    if (map[id]) map[id].setAttribute("aria-current", "true");
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) setActive(e.target.id); });
+  }, { rootMargin: "-20% 0px -70% 0px" });
+  sections.forEach(function (s) { io.observe(s); });
+  setActive("about");
+})();
+</script>
+</body>
+</html>
