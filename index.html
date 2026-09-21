@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Anisha Ganesan – Java and Full-Stack Developer</title>
+<meta name="description" content="Portfolio of Anisha Ganesan, a Computer Science and Engineering student building REST APIs with Spring Boot and React interfaces. Projects, skills, certifications and contact details.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F5F9F8;
+    --surface: #FFFFFF;
+    --ink: #10201E;
+    --muted: #465A57;
+    --line: #DCE7E4;
+    --accent: #0F766E;
+    --accent-ink: #FFFFFF;
+    --accent-soft: #E0F2EF;
+    --font-sans: "Manrope", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0B1413;
+      --surface: #131E1D;
+      --ink: #E8F1EF;
+      --muted: #9DB3AF;
+      --line: #23342F;
+      --accent: #4FD1C0;
+      --accent-ink: #062320;
+      --accent-soft: #123330;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #0B1413;
+    --surface: #131E1D;
+    --ink: #E8F1EF;
+    --muted: #9DB3AF;
+    --line: #23342F;
+    --accent: #4FD1C0;
+    --accent-ink: #062320;
+    --accent-soft: #123330;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 4.5rem); }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-sans); font-size: 1rem; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, h4, p, dl, dd, ul, ol, table, figure { margin: 0; padding: 0; }
+  ul, ol { list-style: none; }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  button { font: inherit; color: inherit; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  .skip { position: absolute; left: -999px; top: 0; background: var(--accent); color: var(--accent-ink); padding: .6rem 1rem; z-index: 50; }
+  .skip:focus { left: 1rem; top: 1rem; }
+  .wrap { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 1.25rem; }
+
+  /* Header and nav */
+  .site-header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--paper); border-bottom: 1px solid var(--line); }
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3.75rem; }
+  .brand { font-weight: 800; text-decoration: none; color: var(--ink); letter-spacing: -.01em; }
+  .bar-right { display: flex; align-items: center; gap: .5rem; }
+  .icon-btn { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: .4rem .75rem; cursor: pointer; font-size: .875rem; font-weight: 600; }
+  .icon-btn:hover { border-color: var(--accent); }
+  .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--paper); border-bottom: 1px solid var(--line); padding: .5rem 1.25rem 1rem; }
+  .nav-links.open { display: flex; }
+  .nav-links a { display: block; padding: .65rem .25rem; color: var(--ink); text-decoration: none; font-weight: 600; border-bottom: 1px solid var(--line); }
+  .nav-links a[aria-current="true"] { color: var(--accent); }
+  @media (min-width: 820px) {
+    .menu-btn { display: none; }
+    .nav-links { display: flex; position: static; flex-direction: row; gap: .25rem; border: 0; padding: 0; background: none; }
+    .nav-links a { border: 0; padding: .4rem .7rem; border-radius: 6px; font-size: .95rem; color: var(--muted); }
+    .nav-links a:hover { background: var(--accent-soft); color: var(--ink); }
+    .nav-links a[aria-current="true"] { background: var(--accent-soft); color: var(--accent); }
+    .bar { gap: 2rem; }
+  }
+
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; justify-content: center; padding: .7rem 1.2rem; border-radius: 10px; border: 2px solid var(--accent); background: var(--accent); color: var(--accent-ink); text-decoration: none; font-weight: 700; font-size: .95rem; cursor: pointer; }
+  .btn:hover { filter: brightness(1.08); }
+  .btn.quiet { background: transparent; color: var(--accent); }
+  .btn.quiet:hover { background: var(--accent-soft); filter: none; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: .65rem; }
+
+  /* Hero */
+  .hero { padding: 3rem 0 3.5rem; }
+  .hero-grid { display: grid; gap: 2.5rem; align-items: center; }
+  .avatar { width: 4.25rem; height: 4.25rem; border-radius: 50%; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; font-weight: 800; font-size: 1.4rem; margin-bottom: 1.25rem; border: 2px solid var(--accent); }
+  .hero h1 { font-size: clamp(2.2rem, 6.5vw, 3.6rem); line-height: 1.08; font-weight: 800; letter-spacing: -.03em; }
+  .hero .role { margin-top: .6rem; font-size: 1.2rem; font-weight: 600; color: var(--accent); }
+  .hero .intro { margin-top: 1rem; max-width: 34rem; color: var(--muted); font-size: 1.05rem; }
+  .hero .btn-row { margin-top: 1.75rem; }
+  .glance { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 1.25rem 1.25rem .5rem; }
+  .glance h2 { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
+  .glance dl > div { padding: .7rem 0; border-top: 1px solid var(--line); }
+  .glance dt { font-size: .8rem; color: var(--muted); }
+  .glance dd { font-weight: 600; }
+  @media (min-width: 900px) { .hero { padding: 4.5rem 0 5rem; } .hero-grid { grid-template-columns: 1.15fr .85fr; gap: 4rem; } }
+
+  /* Sections */
+  .section { padding: 3.5rem 0; border-top: 1px solid var(--line); }
+  .section-head { margin-bottom: 2rem; max-width: 40rem; }
+  .section-head h2 { font-size: clamp(1.6rem, 3.5vw, 2.1rem); font-weight: 800; letter-spacing: -.02em; line-height: 1.2; }
+  .section-head p { margin-top: .5rem; color: var(--muted); }
+  h3 { font-size: 1.25rem; font-weight: 700; line-height: 1.3; letter-spacing: -.01em; }
+  h4 { font-size: 1rem; font-weight: 700; margin: 1.75rem 0 .6rem; }
+  .muted { color: var(--muted); }
+
+  .chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .chips li { font: 500 .78rem var(--font-mono); background: var(--accent-soft); color: var(--ink); border-radius: 6px; padding: .25rem .6rem; }
+  .points { display: grid; gap: .55rem; max-width: 44rem; }
+  .points li { position: relative; padding-left: 1.4rem; }
+  .points li::before { content: ""; position: absolute; left: 0; top: .5em; width: .8rem; height: .8rem; border-radius: 50%; background: var(--accent-soft); border: 3px solid var(--accent); }
+
+  /* Projects */
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 1.5rem 1.25rem; }
+  .card .when { font-size: .875rem; color: var(--muted); font-weight: 500; }
+  .card .summary { margin-top: .9rem; max-width: 44rem; color: var(--muted); }
+  .card .chips { margin-top: 1.1rem; }
+  .card .btn-row { margin-top: 1.25rem; }
+  .card .points { margin-top: 1.1rem; }
+  .featured { border-color: var(--accent); border-width: 2px; }
+  .badge { display: inline-block; background: var(--accent); color: var(--accent-ink); font-size: .75rem; font-weight: 700; padding: .2rem .65rem; border-radius: 999px; margin-bottom: .8rem; }
+  .project-grid { margin-top: 1.5rem; display: grid; gap: 1.5rem; }
+  @media (min-width: 720px) { .card { padding: 2rem; } .project-grid { grid-template-columns: 1fr 1fr; } }
+
+  details.case { margin-top: 1.5rem; border-top: 1px solid var(--line); padding-top: 1.25rem; }
+  details.case > summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: .5rem; font-weight: 700; color: var(--accent); padding: .35rem 0; }
+  details.case > summary::-webkit-details-marker { display: none; }
+  details.case > summary::before { content: "+"; display: inline-grid; place-items: center; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--accent-soft); font-weight: 800; }
+  details.case[open] > summary::before { content: "\2212"; }
+  details.case > summary .close-text { display: none; }
+  details.case[open] > summary .open-text { display: none; }
+  details.case[open] > summary .close-text { display: inline; }
+
+  .steps { display: grid; gap: .7rem; counter-reset: step; max-width: 44rem; }
+  .steps li { counter-increment: step; position: relative; padding-left: 2.4rem; }
+  .steps li::before { content: counter(step); position: absolute; left: 0; top: .1rem; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font: 600 .8rem/1.6rem var(--font-mono); text-align: center; }
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+  th, td { text-align: left; padding: .6rem .85rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { background: var(--accent-soft); font-weight: 700; white-space: nowrap; }
+  tr:last-child td { border-bottom: 0; }
+  td.mono { font-family: var(--font-mono); font-size: .8rem; white-space: nowrap; }
+  details.inner { margin-top: 1.25rem; border: 1px solid var(--line); border-radius: 10px; }
+  details.inner > summary { cursor: pointer; padding: .7rem 1rem; font-weight: 600; }
+  details.inner[open] > summary { border-bottom: 1px solid var(--line); }
+  details.inner .table-wrap { border: 0; border-radius: 0 0 10px 10px; }
+  .note { margin-top: 1.5rem; padding: .85rem 1rem; border-left: 4px solid var(--accent); background: var(--accent-soft); border-radius: 0 8px 8px 0; font-size: .92rem; max-width: 44rem; }
+
+  /* Skills */
+  .skill-rows > div { display: grid; gap: .6rem; padding: 1.1rem 0; border-bottom: 1px solid var(--line); }
+  .skill-rows > div:first-child { padding-top: 0; }
+  .skill-rows dt { font-weight: 700; }
+  @media (min-width: 720px) { .skill-rows > div { grid-template-columns: 11rem 1fr; gap: 1.5rem; align-items: start; } }
+
+  /* Timeline */
+  .timeline { position: relative; display: grid; gap: 2rem; padding-left: 1.75rem; border-left: 2px solid var(--line); margin-left: .4rem; }
+  .timeline > li { position: relative; }
+  .timeline > li::before { content: ""; position: absolute; left: calc(-1.75rem - 7px); top: .35rem; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); border: 3px solid var(--paper); box-sizing: content-box; }
+  .timeline .when { font-size: .875rem; color: var(--muted); font-weight: 500; }
+  .timeline .org { color: var(--muted); }
+  .timeline .points { margin-top: .8rem; }
+
+  /* Credentials */
+  .creds { display: grid; gap: 1rem; }
+  .creds li { display: grid; grid-template-columns: 2rem 1fr; gap: .75rem; align-items: start; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1rem 1.1rem; }
+  .creds .tick { width: 1.6rem; height: 1.6rem; border-radius: 50%; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; font-weight: 800; font-size: .85rem; margin-top: .1rem; }
+  .creds .name { font-weight: 700; }
+  .creds .detail { display: block; color: var(--muted); font-size: .9rem; overflow-wrap: anywhere; }
+  .creds .detail.mono { font-family: var(--font-mono); font-size: .75rem; }
+  @media (min-width: 720px) { .creds { grid-template-columns: 1fr 1fr; } }
+
+  /* Contact */
+  .contact-card { background: var(--accent-soft); border: 1px solid var(--line); border-radius: 20px; padding: 2rem 1.25rem; }
+  .contact-card h2 { font-size: clamp(1.6rem, 3.5vw, 2.1rem); font-weight: 800; letter-spacing: -.02em; line-height: 1.2; }
+  .contact-card > p { margin-top: .6rem; max-width: 34rem; color: var(--muted); }
+  .contact-card .btn-row { margin-top: 1.5rem; }
+  .copy-status { margin-top: .75rem; min-height: 1.6em; font-size: .9rem; font-weight: 600; color: var(--accent); }
+  .contact-list { margin-top: 1.25rem; display: grid; gap: .9rem; }
+  .contact-list dt { font-size: .8rem; color: var(--muted); }
+  .contact-list dd { overflow-wrap: anywhere; font-weight: 600; }
+  .contact-list a { color: var(--ink); }
+  .contact-list a:hover { color: var(--accent); }
+  @media (min-width: 720px) { .contact-card { padding: 3rem; } .contact-list { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); } }
+
+  .site-footer { padding: 1.75rem 0 2.75rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+  .to-top { position: fixed; right: 1rem; bottom: calc(env(safe-area-inset-bottom, 0px) + 1rem); z-index: 15; display: none; width: 2.75rem; height: 2.75rem; border-radius: 50%; border: 2px solid var(--accent); background: var(--surface); color: var(--accent); font-size: 1.2rem; font-weight: 800; cursor: pointer; }
+  .to-top.show { display: block; }
+
+  @media print {
+    .site-header, .to-top, .btn-row { display: none; }
+    body { background: #fff; color: #000; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="#top">Anisha Ganesan</a>
+    <nav aria-label="Sections">
+      <ul class="nav-links" id="nav">
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="bar-right">
+      <button type="button" class="icon-btn" id="theme-btn" aria-label="Switch colour theme">Dark mode</button>
+      <button type="button" class="icon-btn menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav">Menu</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="avatar" aria-hidden="true">AG</div>
+        <h1>Hi, I'm Anisha Ganesan</h1>
+        <p class="role">Java and full-stack developer</p>
+        <p class="intro">I'm a final-year Computer Science and Engineering student. I build REST APIs with Spring Boot and React interfaces that are simple to use, and I'm looking for internships and entry-level software roles.</p>
+        <div class="btn-row">
+          <a class="btn" href="#projects">View my projects</a>
+          <a class="btn quiet" href="#contact">Contact me</a>
+          <a class="btn quiet" href="https://github.com/Anisha-11405" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+
+      <aside class="glance" aria-labelledby="glance-title">
+        <h2 id="glance-title">At a glance</h2>
+        <dl>
+          <div><dt>Studying</dt><dd>B.E. Computer Science and Engineering, 2023 – 2027 (CGPA 8.73)</dd></div>
+          <div><dt>Strongest in</dt><dd>Java 17, Spring Boot, MySQL</dd></div>
+          <div><dt>Also works with</dt><dd>React.js, Docker, AWS</dd></div>
+          <div><dt>Certified</dt><dd>AWS Cloud Practitioner, ServiceNow CSA and CAD</dd></div>
+          <div><dt>Practice</dt><dd>500+ LeetCode problems solved</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <p>Three full-stack applications built with Java, Spring Boot and MySQL. Each one has its source code on GitHub.</p>
+      </div>
+
+      <article class="card featured">
+        <span class="badge">Latest project</span>
+        <p class="when">Aug 2026 – Sep 2026</p>
+        <h3>SmartLabel AI</h3>
+        <p class="summary">A label compliance screening app. Upload a photo of a packaged product's label and it reads the text, extracts the mandatory declarations, and checks them against a set of preliminary rules. Every result shows the evidence found and what to do next.</p>
+        <ul class="points">
+          <li>Reads label photos with Tesseract OCR, or accepts pasted text if OCR isn't available.</li>
+          <li>Extracts 15 declarations and runs 11 explainable compliance checks.</li>
+          <li>Scores each label and saves the history in MySQL.</li>
+          <li>Includes a dashboard, search and filter, and printable and JSON reports.</li>
+        </ul>
+        <ul class="chips" aria-label="Technologies">
+          <li>Java 17</li><li>Spring Boot 3.4</li><li>Spring Data JPA</li><li>Hibernate</li><li>MySQL 8</li><li>React 18</li><li>Tesseract OCR</li><li>Maven</li><li>REST API</li>
+        </ul>
+        <div class="btn-row">
+          <a class="btn" href="https://github.com/Anisha-11405/SmartLabelAI" target="_blank" rel="noopener">View source on GitHub</a>
+        </div>
+
+        <details class="case">
+          <summary><span class="open-text">Read the full case study</span><span class="close-text">Hide the case study</span></summary>
+
+          <h4>What it does</h4>
+          <ul class="points">
+            <li>Accepts a label image of up to 10 MB with a live preview, and reads it with Tesseract OCR on the server.</li>
+            <li>Extracts 15 declarations with pattern matching: product and common name, manufacturer, packer, importer, country of origin, net quantity, MRP, batch or lot number, manufacturing and packing dates, best before, consumer care details, unit sale price and product dimensions.</li>
+            <li>Runs 11 explainable checks. Each records its requirement, legal reference, the evidence found and the action to take, and returns Pass or Review.</li>
+            <li>Calculates a compliance score from the share of checks passed. Anything software cannot judge, such as legibility and prominence, goes to manual verification instead of being passed automatically.</li>
+            <li>Saves every inspection to MySQL with a readable ID such as SL-000123 so it can be reopened later.</li>
+            <li>Offers a dashboard with totals by status and the average score, a history view with search, filter and delete, printable and JSON exports, a demo mode, and a layout that works on mobile.</li>
+          </ul>
+
+          <h4>How an inspection runs</h4>
+          <ol class="steps">
+            <li><strong>Upload.</strong> The React client sends the label image, product category and package type to the API as multipart form data.</li>
+            <li><strong>OCR.</strong> The service passes the image to Tesseract and collects the recognised text.</li>
+            <li><strong>Extraction.</strong> Regular expressions pull each declaration out of the text.</li>
+            <li><strong>Rule evaluation.</strong> The 11 checks run against the extracted values and produce a score and status.</li>
+            <li><strong>Saving.</strong> The inspection is stored through Spring Data JPA and the full report is returned to the client.</li>
+          </ol>
+
+          <h4>REST API</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Method</th><th>Endpoint</th><th>Purpose</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">POST</td><td class="mono">/api/analyze-image</td><td>Analyse a label image, with OCR or supplied text</td></tr>
+                <tr><td class="mono">POST</td><td class="mono">/api/analyze</td><td>Analyse label text directly</td></tr>
+                <tr><td class="mono">GET</td><td class="mono">/api/history</td><td>List past inspections, newest first</td></tr>
+                <tr><td class="mono">GET</td><td class="mono">/api/inspections/{id}</td><td>Full report for one inspection</td></tr>
+                <tr><td class="mono">DELETE</td><td class="mono">/api/inspections/{id}</td><td>Delete an inspection</td></tr>
+                <tr><td class="mono">GET</td><td class="mono">/api/dashboard/stats</td><td>Totals by status and average score</td></tr>
+                <tr><td class="mono">GET</td><td class="mono">/api/health</td><td>Service health check</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <details class="inner">
+            <summary>See the 11 checks</summary>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Code</th><th>Requirement</th><th>Reference</th></tr></thead>
+                <tbody>
+                  <tr><td class="mono">R-01</td><td>Product or common name declaration</td><td>Rule 6</td></tr>
+                  <tr><td class="mono">R-02</td><td>Manufacturer, packer or importer details</td><td>Rule 6</td></tr>
+                  <tr><td class="mono">R-03</td><td>Country of origin for imported products</td><td>Applicable requirements</td></tr>
+                  <tr><td class="mono">R-04</td><td>Net quantity declaration</td><td>Rule 6</td></tr>
+                  <tr><td class="mono">R-05</td><td>MRP declaration</td><td>Rule 6</td></tr>
+                  <tr><td class="mono">R-06</td><td>Date declaration</td><td>Applicable requirements</td></tr>
+                  <tr><td class="mono">R-07</td><td>Best before or use by, where applicable</td><td>Category-specific</td></tr>
+                  <tr><td class="mono">R-08</td><td>Consumer care details</td><td>Rule 6</td></tr>
+                  <tr><td class="mono">R-09</td><td>Unit sale price, where applicable</td><td>Applicable requirements</td></tr>
+                  <tr><td class="mono">R-10</td><td>Legibility and prominence review</td><td>Manual verification</td></tr>
+                  <tr><td class="mono">R-11</td><td>Batch or lot information</td><td>Applicable requirements</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+
+          <p class="note">SmartLabel AI is a prototype for preliminary screening. OCR can miss or misread text, and final compliance decisions on legibility, placement, exemptions and amendments must be made by an authorised officer.</p>
+        </details>
+      </article>
+
+      <div class="project-grid">
+        <article class="card">
+          <p class="when">Jun 2025 – Aug 2025</p>
+          <h3>Healthcare Appointment Management System</h3>
+          <p class="summary">A full-stack app for managing patients, doctors and appointments, with a secured REST API and a React interface.</p>
+          <ul class="points">
+            <li>Create, read, update and delete operations for patients, doctors and appointments.</li>
+            <li>JWT authentication to secure the API.</li>
+            <li>React UI with form validation, error handling and Axios integration.</li>
+            <li>MySQL for persistent storage.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>React.js</li><li>Spring Boot</li><li>REST API</li><li>MySQL</li><li>JWT</li><li>Axios</li>
+          </ul>
+          <div class="btn-row"><a class="btn quiet" href="https://github.com/Anisha-11405/HealthCare-Appointment-Management-System" target="_blank" rel="noopener">View source on GitHub</a></div>
+        </article>
+
+        <article class="card">
+          <p class="when">Jan 2025 – Mar 2025</p>
+          <h3>E-Learning Portal for Students and Trainers</h3>
+          <p class="summary">A learning platform where trainers publish quizzes and discussions and students take part and get evaluated.</p>
+          <ul class="points">
+            <li>Domain modelled with One-to-Many and One-to-One JPA mappings.</li>
+            <li>REST APIs for quizzes, discussions and evaluation.</li>
+            <li>Every endpoint documented in Postman.</li>
+            <li>Responsive pages built with HTML, CSS and JavaScript.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies">
+            <li>Java</li><li>Spring Boot</li><li>JPA</li><li>MySQL</li><li>HTML/CSS</li><li>JavaScript</li><li>Postman</li>
+          </ul>
+          <div class="btn-row"><a class="btn quiet" href="https://github.com/Anisha-11405/E-learning-Project" target="_blank" rel="noopener">View source on GitHub</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="skills">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Skills</h2>
+        <p>The tools I use to build, test and ship back-end and full-stack applications.</p>
+      </div>
+      <dl class="skill-rows">
+        <div><dt>Languages</dt><dd><ul class="chips"><li>Java 17</li><li>C++</li><li>SQL</li><li>JavaScript</li></ul></dd></div>
+        <div><dt>Backend</dt><dd><ul class="chips"><li>Spring Boot</li><li>Spring Security</li><li>Spring Data JPA</li><li>Hibernate</li><li>REST API design</li><li>JWT authentication</li></ul></dd></div>
+        <div><dt>Frontend</dt><dd><ul class="chips"><li>React.js</li><li>Axios</li><li>HTML</li><li>CSS</li><li>JavaScript</li></ul></dd></div>
+        <div><dt>Database</dt><dd><ul class="chips"><li>MySQL</li></ul></dd></div>
+        <div><dt>API and testing</dt><dd><ul class="chips"><li>Postman</li><li>Swagger/OpenAPI</li><li>JUnit</li></ul></dd></div>
+        <div><dt>Tools and cloud</dt><dd><ul class="chips"><li>Git</li><li>GitHub</li><li>Maven</li><li>Docker</li><li>AWS</li></ul></dd></div>
+        <div><dt>Fundamentals</dt><dd><ul class="chips"><li>Data structures and algorithms</li></ul></dd></div>
+        <div><dt>Integrations</dt><dd><ul class="chips"><li>OCR with Tesseract</li></ul></dd></div>
+        <div><dt>Working style</dt><dd><ul class="chips"><li>Problem-solving</li><li>Communication</li><li>Quick learning</li><li>Team collaboration</li></ul></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section" id="experience">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Experience and education</h2>
+        <p>Where I've worked and studied, most recent first.</p>
+      </div>
+      <ol class="timeline">
+        <li>
+          <p class="when">Oct 2025 – Dec 2025</p>
+          <h3>Virtual Internship, Banking Activity Simulation Platform</h3>
+          <p class="org">Infosys Springboard</p>
+          <ul class="points">
+            <li>Completed a simulation-based internship covering banking workflows and transaction processing.</li>
+            <li>Finished assignments that modelled real-world banking operations and system activity.</li>
+          </ul>
+        </li>
+        <li>
+          <p class="when">2023 – 2027</p>
+          <h3>B.E. in Computer Science and Engineering</h3>
+          <p class="org">Sri Krishna College of Engineering and Technology, Coimbatore</p>
+          <p>CGPA 8.73</p>
+        </li>
+        <li>
+          <p class="when">2021 – 2022</p>
+          <h3>Class XII</h3>
+          <p class="org">Kamaraj Matriculation Higher Secondary School</p>
+          <p>95.67%</p>
+        </li>
+      </ol>
+      <p class="muted" style="margin-top:2rem">Languages known: English, Tamil</p>
+    </div>
+  </section>
+
+  <section class="section" id="certifications">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Certifications and achievements</h2>
+        <p>Industry certifications and competitive programming milestones.</p>
+      </div>
+      <ul class="creds">
+        <li>
+          <span class="tick" aria-hidden="true">✓</span>
+          <div>
+            <span class="name">AWS Certified Cloud Practitioner</span>
+            <span class="detail mono">Credential ID 5d6c1801c17844df978edff2c8d693ec</span>
+            <span class="detail"><a href="https://cp.certmetrics.com/amazon/en/public/verify/credential" target="_blank" rel="noopener">Verify credential</a></span>
+          </div>
+        </li>
+        <li>
+          <span class="tick" aria-hidden="true">✓</span>
+          <div><span class="name">ServiceNow Certified System Administrator (CSA)</span></div>
+        </li>
+        <li>
+          <span class="tick" aria-hidden="true">✓</span>
+          <div><span class="name">ServiceNow Certified Application Developer (CAD)</span></div>
+        </li>
+        <li>
+          <span class="tick" aria-hidden="true">✓</span>
+          <div>
+            <span class="name">500+ problems solved on LeetCode</span>
+            <span class="detail"><a href="https://leetcode.com/u/AnishaG/" target="_blank" rel="noopener">View LeetCode profile</a></span>
+          </div>
+        </li>
+        <li>
+          <span class="tick" aria-hidden="true">✓</span>
+          <div><span class="name">Selected for the State Hub round of SAP Hackfest</span></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="contact-card">
+        <h2>Let's connect</h2>
+        <p>I'm open to internships and entry-level software roles. Email is the quickest way to reach me.</p>
+        <div class="btn-row">
+          <a class="btn" href="mailto:anishaganesan1104@gmail.com">Send an email</a>
+          <button type="button" class="btn quiet" id="copy-email">Copy email address</button>
+        </div>
+        <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
+        <dl class="contact-list">
+          <div><dt>Email</dt><dd><a href="mailto:anishaganesan1104@gmail.com">anishaganesan1104@gmail.com</a></dd></div>
+          <div><dt>Phone</dt><dd><a href="tel:+918903509969">+91 89035 09969</a></dd></div>
+          <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/anisha-g-433177320" target="_blank" rel="noopener">linkedin.com/in/anisha-g-433177320</a></dd></div>
+          <div><dt>GitHub</dt><dd><a href="https://github.com/Anisha-11405" target="_blank" rel="noopener">github.com/Anisha-11405</a></dd></div>
+          <div><dt>LeetCode</dt><dd><a href="https://leetcode.com/u/AnishaG/" target="_blank" rel="noopener">leetcode.com/u/AnishaG</a></dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">© 2026 Anisha Ganesan</div>
+</footer>
+
+<button type="button" class="to-top" id="to-top" aria-label="Back to top">↑</button>
+
+<script>
+(function () {
+  var root = document.documentElement;
+
+  /* Theme toggle: follows the device by default, remembers a manual choice */
+  var themeBtn = document.getElementById("theme-btn");
+  function systemDark() { return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches; }
+  function isDark() {
+    var t = root.getAttribute("data-theme");
+    return t ? t === "dark" : systemDark();
+  }
+  function refreshThemeLabel() { themeBtn.textContent = isDark() ? "Light mode" : "Dark mode"; }
+  try {
+    var saved = localStorage.getItem("theme");
+    if (saved === "light" || saved === "dark") root.setAttribute("data-theme", saved);
+  } catch (e) {}
+  refreshThemeLabel();
+  themeBtn.addEventListener("click", function () {
+    var next = isDark() ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("theme", next); } catch (e) {}
+    refreshThemeLabel();
+  });
+
+  /* Mobile menu */
+  var menuBtn = document.getElementById("menu-btn");
+  var nav = document.getElementById("nav");
+  function closeMenu() { nav.classList.remove("open"); menuBtn.setAttribute("aria-expanded", "false"); }
+  menuBtn.addEventListener("click", function () {
+    var open = nav.classList.toggle("open");
+    menuBtn.setAttribute("aria-expanded", String(open));
+  });
+  nav.addEventListener("click", function (e) { if (e.target.tagName === "A") closeMenu(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeMenu(); });
+
+  /* Highlight the section in view */
+  var links = nav.querySelectorAll("a");
+  var map = {};
+  links.forEach(function (a) { map[a.getAttribute("href").slice(1)] = a; });
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          links.forEach(function (a) { a.removeAttribute("aria-current"); });
+          if (map[en.target.id]) map[en.target.id].setAttribute("aria-current", "true");
+        }
+      });
+    }, { rootMargin: "-25% 0px -65% 0px" });
+    document.querySelectorAll("main > section.section").forEach(function (s) { io.observe(s); });
+  }
+
+  /* Copy email */
+  var copyBtn = document.getElementById("copy-email");
+  var status = document.getElementById("copy-status");
+  var email = "anishaganesan1104@gmail.com";
+  function done(ok) {
+    status.textContent = ok ? "Email address copied." : "Couldn't copy automatically. The address is listed below.";
+    setTimeout(function () { status.textContent = ""; }, 4000);
+  }
+  copyBtn.addEventListener("click", function () {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(email).then(function () { done(true); }, function () { fallback(); });
+    } else { fallback(); }
+  });
+  function fallback() {
+    try {
+      var ta = document.createElement("textarea");
+      ta.value = email; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      var ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+      done(ok);
+    } catch (e) { done(false); }
+  }
+
+  /* Back to top */
+  var toTop = document.getElementById("to-top");
+  window.addEventListener("scroll", function () {
+    toTop.classList.toggle("show", window.scrollY > 700);
+  }, { passive: true });
+  toTop.addEventListener("click", function () { window.scrollTo({ top: 0 }); });
+})();
+</script>
+</body>
+</html>
